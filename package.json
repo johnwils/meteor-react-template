@@ -1,0 +1,31 @@
+{
+  "name": "meteor-bootstrap4-react-router4-template",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.39",
+    "bcrypt": "^1.0.3",
+    "bootstrap": "^4.0.0",
+    "jquery": "^3.3.1",
+    "meteor-node-stubs": "^0.3.2",
+    "popper.js": "^1.12.9",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router-dom": "^4.2.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.2.5"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {
+        "browsers": [
+          "last 2 versions"
+        ]
+      }
+    }
+  }
+}
