@@ -68,6 +68,12 @@ A ddp connection can be made to an existing meteor server, following steps in [M
 
 The ddp connection enables access to the existing server's methods, collections and publications.
 
+**Links**:
+
+[Splitting into multiple Meteor apps](https://guide.meteor.com/structure.html#splitting-your-app)
+
+[Multi Meteor app single sign on](https://github.com/tmeasday/multi-app-accounts)
+
 **npm packages added**:
 
 - @babel/runtime (updated to work with latest meteor)
