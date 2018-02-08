@@ -72,7 +72,7 @@ The ddp connection enables access to the existing server's methods, collections 
 
 [Splitting into multiple Meteor apps](https://guide.meteor.com/structure.html#splitting-your-app)
 
-[Multi Meteor app single sign on](https://github.com/tmeasday/multi-app-accounts)
+[Meteor multi app accounts](https://github.com/tmeasday/multi-app-accounts)
 
 **npm packages added**:
 
