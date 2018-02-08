@@ -15,7 +15,7 @@ const ddp = DDP.connect(remoteUrl);
 Meteor.connection = ddp;
 Accounts.connection = ddp;
 
-// 3. Patch methods to makes them accessable in client code
+// 3. Patch methods to make them accessible in client code
 const methods = ["subscribe", "call", "apply", "methods", "status", "reconnect", "disconnect", "onReconnect"];
 methods.forEach((method) => Meteor[method] = (...args) => ddp[method].apply(ddp, args));
 
