@@ -6,6 +6,9 @@ import 'popper.js';
 import 'bootstrap';
 import './styles/main.scss';
 
+// connect to ddp (uncomment when url is set in ddp.js)
+// import './ddp';
+
 // import client routes
 import App from '../../ui/layouts/App';
 
