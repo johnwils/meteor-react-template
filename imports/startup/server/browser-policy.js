@@ -1,17 +1,26 @@
 /**
  * Browser Policy
  * Set security-related policies to be enforced by newer browsers.
- * These policies help prevent and mitigate common attacks like cross-site scripting and clickjacking.
+ * These policies help prevent and mitigate common attacks like
+ * cross-site scripting and clickjacking.
  */
 
-// allowed scripts (add urls and uncomment)
-let allowScriptOrigin = [''];
+import { BrowserPolicy } from 'meteor/browser-policy-common';
+
+/**
+ * allowed images
+ */
+const allowImageOrigin = ['via.placeholder.com'];
+allowImageOrigin.forEach(o => BrowserPolicy.content.allowImageOrigin(o));
+
+/**
+ * allowed scripts
+ */
+// const allowScriptOrigin = [''];
 // allowScriptOrigin.forEach(o => BrowserPolicy.content.allowScriptOrigin(o));
 
-// // allowed styles (add urls and uncomment)
-let allowStyleOrigin = [''];
+/**
+ * allowed styles
+ */
+// const allowStyleOrigin = [''];
 // allowStyleOrigin.forEach(o => BrowserPolicy.content.allowStyleOrigin(o));
-
-// allowed images
-let allowImageOrigin = ['via.placeholder.com'];
-allowImageOrigin.forEach(o => BrowserPolicy.content.allowImageOrigin(o));
