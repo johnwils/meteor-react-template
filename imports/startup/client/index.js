@@ -7,7 +7,7 @@ import 'bootstrap';
 import './styles/main.scss';
 
 // connect to ddp (uncomment when url is set in ddp.js)
-// import './ddp';
+// import '../../api/remote/ddp';
 
 // import client routes
 import App from '../../ui/layouts/App';
