@@ -32,22 +32,19 @@ const SearchBar = () => (
   </form>
 );
 
-const AuthenticatedNav = ({ email }) => [
+const AuthenticatedNav = ({ user }) => [
   <SearchBar key="searchbar" />,
   <li key="dropdown" className="nav-item dropdown ml-4">
-    <a
+    <span
       className="nav-link dropdown-toggle"
       id="navbarDropdownMenuLink"
       data-toggle="dropdown"
       aria-haspopup="true"
       aria-expanded="false"
     >
-      {email}
-    </a>
-    <div
-      className="dropdown-menu dropdown-menu-right"
-      aria-labelledby="navbarDropdownMenuLink"
-    >
+      {user.emails[0].address}
+    </span>
+    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
       <NavLink to="/profile">
         <button className="dropdown-item">Profile</button>
       </NavLink>
@@ -96,19 +93,19 @@ const Navbar = ({ authenticated, user }) => (
     </button>
     <div className="collapse navbar-collapse" id="navbarContent">
       <ul className="navbar-nav ml-auto">
-        {authenticated ? (
-          <AuthenticatedNav email={user.emails[0].address} />
-        ) : (
-          <PublicNav />
-        )}
+        {authenticated ? <AuthenticatedNav user={user} /> : <PublicNav />}
       </ul>
     </div>
   </nav>
 );
 
+Navbar.defaultProps = {
+  user: null,
+};
+
 Navbar.propTypes = {
   authenticated: PropTypes.bool.isRequired,
-  user: PropTypes.object,
+  user: Meteor.user() ? PropTypes.object.isRequired : () => null,
 };
 
 export default Navbar;

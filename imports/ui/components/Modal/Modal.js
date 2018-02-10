@@ -35,12 +35,23 @@ Button.propTypes = {
   ]).isRequired,
 };
 
-const Modal = ({ target, title, body, counter }) => (
-  <div className="modal fade modal-01" id={target} tabIndex="-1" role="dialog" aria-labelledby={target} aria-hidden="true">
+const Modal = ({
+  target, title, body, counter,
+}) => (
+  <div
+    className="modal fade modal-01"
+    id={target}
+    tabIndex="-1"
+    role="dialog"
+    aria-labelledby={target}
+    aria-hidden="true"
+  >
     <div className="modal-dialog" role="document">
       <div className="modal-content">
         <div className="modal-header">
-          <h5 className="modal-title" id={target}>{title}</h5>
+          <h5 className="modal-title" id={target}>
+            {title}
+          </h5>
           <button type="button" className="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -49,11 +60,21 @@ const Modal = ({ target, title, body, counter }) => (
           Meteor.userId():<code> {body}</code>
           <br />
           <br />
-          Meteor.user():<br/>  <code> <pre>{JSON.stringify(Meteor.user(), null, 2)}</pre></code>
-          Counter:<br/>  <code> <pre>{JSON.stringify(counter, null, 2)}</pre></code>
+          Meteor.user():<br />{' '}
+          <code>
+            {' '}
+            <pre>{JSON.stringify(Meteor.user(), null, 2)}</pre>
+          </code>
+          Counter:<br />{' '}
+          <code>
+            {' '}
+            <pre>{JSON.stringify(counter, null, 2)}</pre>
+          </code>
         </div>
         <div className="modal-footer">
-          <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" className="btn btn-secondary" data-dismiss="modal">
+            Close
+          </button>
         </div>
       </div>
     </div>
@@ -64,7 +85,10 @@ Modal.propTypes = {
   target: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
-  counter: PropTypes.object,
+  counter: PropTypes.shape({
+    _id: PropTypes.string,
+    count: PropTypes.number,
+  }).isRequired,
 };
 
 export default Modal;

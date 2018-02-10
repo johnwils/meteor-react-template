@@ -1,6 +1,5 @@
 /**
  * Register each api
- * 
  * import private server methods and server publications
  */
 

@@ -2,11 +2,10 @@ import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-// example importing components
-import Text from '../../components/Text';
-import Button from '../../components/Button';
+// import components
+import Alert from '../../components/Alert';
 
-// import locally scoped styles
+// import styles
 import './Login.scss';
 
 class Login extends React.Component {
@@ -15,7 +14,7 @@ class Login extends React.Component {
     this.state = {
       email: '',
       password: '',
-      err: '',
+      errMsg: null,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -23,14 +22,15 @@ class Login extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const { email, password } = this.state;
-    Meteor.loginWithPassword(email, password, err => {
+    Meteor.loginWithPassword(email, password, (err) => {
       if (err) {
-        this.setState({ err: err.reason });
+        this.setState({ errMsg: err.reason });
         return console.log(err);
       }
     });
   }
   render() {
+    const { errMsg } = this.state;
     return (
       <section className="login-page">
         <div className="card mx-auto" style={{ maxWidth: '28rem' }}>
@@ -58,7 +58,6 @@ class Login extends React.Component {
                     value={this.state.email}
                     onChange={e => this.setState({ email: e.target.value })}
                     required
-                    autoFocus
                   />
                 </div>
 
@@ -78,18 +77,18 @@ class Login extends React.Component {
                   <NavLink to="/recover-password">Forgot Password?</NavLink>
                 </div>
                 <div className="form-group no-margin">
-                  <button type="submit" className="btn btn-primary btn-block">
+                  <button type="submit" className="btn btn-primary btn-block mb-2">
                     Login
                   </button>
+                  {errMsg && <Alert errMsg={errMsg} />}
                 </div>
                 <div className="margin-top20">
-                  Don't have an account?{' '}
-                  <NavLink to="/signup">Create one</NavLink>
+                  Don&apos;t have an account? <NavLink to="/signup">Create one</NavLink>
                 </div>
               </form>
             </div>
           </div>
-          <div className="footer text-center">&copy; 2018</div>
+          <div className="footer text-center">&copy; {new Date().getFullYear()}</div>
         </div>
       </section>
     );

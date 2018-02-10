@@ -1,12 +1,12 @@
-import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import './Signup.scss';
+// import components
+import Alert from '../../components/Alert';
 
-// meteor's error message
-const EMAIL_EXISTS = 'Email already exists.';
+// import styles
+import './Signup.scss';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class Signup extends React.Component {
     this.state = {
       email: '',
       password: '',
-      err: '',
+      errMsg: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -22,15 +22,16 @@ class Signup extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const { email, password } = this.state;
-    Accounts.createUser({ email, password }, err => {
+    Accounts.createUser({ email, password }, (err) => {
       if (err) {
-        this.setState({ err: err.reason });
+        this.setState({ errMsg: err.reason });
         return console.log(err);
       }
     });
   }
 
   render() {
+    const { errMsg } = this.state;
     return (
       <section className="signup-page">
         <div className="card mx-auto" style={{ maxWidth: '28rem' }}>
@@ -58,7 +59,6 @@ class Signup extends React.Component {
                     value={this.state.email}
                     onChange={e => this.setState({ email: e.target.value })}
                     required
-                    autoFocus
                   />
                 </div>
 
@@ -76,14 +76,15 @@ class Signup extends React.Component {
                 </div>
                 <div className="form-group">
                   <label>
-                    <input type="checkbox" name="aggree" value="1" required/> I agree to
-                    the Terms and Conditions
+                    <input type="checkbox" name="aggree" value="1" required /> I agree to the Terms
+                    and Conditions
                   </label>
                 </div>
                 <div className="form-group no-margin">
-                  <button type="submit" className="btn btn-primary btn-block">
+                  <button type="submit" className="btn btn-primary btn-block mb-2">
                     Sign up
                   </button>
+                  {errMsg && <Alert errMsg={errMsg} />}
                 </div>
                 <div className="margin-top20">
                   Already have an account? <NavLink to="/login">Login</NavLink>
@@ -91,7 +92,7 @@ class Signup extends React.Component {
               </form>
             </div>
           </div>
-          <div className="footer text-center">&copy; 2018</div>
+          <div className="footer text-center">&copy; {new Date().getFullYear()}</div>
         </div>
       </section>
     );
