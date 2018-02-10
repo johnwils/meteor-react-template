@@ -17,7 +17,16 @@
     "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
-    "autoprefixer": "^7.2.5"
+    "@meteorjs/eslint-config-meteor": "^1.0.5",
+    "autoprefixer": "^7.2.5",
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-import-resolver-meteor": "^0.4.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-meteor": "^4.1.4",
+    "eslint-plugin-react": "^7.6.1"
   },
   "postcss": {
     "plugins": {
