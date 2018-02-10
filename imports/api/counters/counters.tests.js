@@ -4,7 +4,7 @@
 
 import { Meteor } from 'meteor/meteor';
 import { assert } from 'meteor/practicalmeteor:chai';
-import { Counters } from './counters.js';
+import Counters from './counters.js';
 
 if (Meteor.isServer) {
   describe('counters collection', function () {
@@ -17,7 +17,7 @@ if (Meteor.isServer) {
       const collectionName = added._getCollectionName();
       const count = added.count();
 
-      assert.equal(collectionName, 'Counters');
+      assert.equal(collectionName, 'counters');
       assert.equal(count, 1);
     });
   });

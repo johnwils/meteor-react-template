@@ -1,7 +1,7 @@
 // All related publications for this api
 
 import { Meteor } from 'meteor/meteor';
-import { Counters } from './counters.js';
+import Counters from './counters.js';
 
 Meteor.publish('counters.all', function() {
   return Counters.find();

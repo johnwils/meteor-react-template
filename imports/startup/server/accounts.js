@@ -4,7 +4,7 @@
 
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
-import { Counters } from '../../api/counters/counters.js';
+import Counters from '../../api/counters/counters.js';
 
 Accounts.onCreateUser((options, user) => {
   // init counter at 0

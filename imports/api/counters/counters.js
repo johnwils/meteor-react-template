@@ -2,4 +2,6 @@
 
 import { Mongo } from 'meteor/mongo';
 
-export const Counters = new Mongo.Collection('Counters');
+const Counters = new Mongo.Collection('counters');
+
+export default Counters;

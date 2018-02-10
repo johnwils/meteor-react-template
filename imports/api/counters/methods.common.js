@@ -8,7 +8,7 @@
 
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { Counters } from './counters.js';
+import Counters from './counters.js';
 
 const authCheck = (serverId, id) => !serverId === id;
 

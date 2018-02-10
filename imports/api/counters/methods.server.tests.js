@@ -1,10 +1,11 @@
+/* eslint-disable no-undef */
 // Tests for private server methods
 //
 // https://guide.meteor.com/testing.html
 
 import { Meteor } from 'meteor/meteor';
 import { assert } from 'meteor/practicalmeteor:chai';
-import { Counters } from './counters.js';
+import Counters from './counters.js';
 import './methods.server.js';
 
 if (Meteor.isServer) {
