@@ -67,17 +67,19 @@ export default withTracker(({ userId }) => {
   // remote example (if using ddp)
   /*
   const usersSub = Remote.subscribe('users.all'); // publication needs to be set on remote server
-  const usersReady = usersSub.ready();
+  const users = Users.find().fetch();
+  const usersReady = usersSub.ready() && !!users;
   */
 
   // counters example
   const countersSub = Meteor.subscribe('counters.all');
-  const countersReady = countersSub.ready();
+  const counter = Counters.findOne(userId);
+  const countersReady = countersSub.ready() && !!counter;
   return {
     // remote example (if using ddp)
     // usersReady,
-    // users: usersReady ? Users.find().fetch() : null,
+    // users,
     countersReady,
-    counter: countersReady ? Counters.findOne(userId) : null,
+    counter,
   };
 })(Profile);
