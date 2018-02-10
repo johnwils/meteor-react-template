@@ -21,6 +21,7 @@ shell-server@0.3.1                # Server-side component of the `meteor shell` 
 jquery                            # Uses latest node_modules/jquery version if installed, falls back to 1.11.11
 fourseven:scss
 practicalmeteor:mocha             # A package for writing and running your meteor app and package tests with mocha
+practicalmeteor:chai
 johanbrook:publication-collector  # Test a Meteor publication by collecting its output
 react-meteor-data
 accounts-password@1.5.0
