@@ -28,3 +28,5 @@ accounts-password@1.5.0
 meteortoys:allthings
 browser-policy
 fortawesome:fontawesome
+mdg:validated-method
+didericis:callpromise-mixin
