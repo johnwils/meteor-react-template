@@ -32,27 +32,37 @@ Navigate to http://localhost:3000 in any browser.
 
 A live demo is available at [https://meteortemplate.jdwilson.ca](https://meteortemplate.jdwilson.ca)
 
-## authentication / routing
-Authentication and routing are based on [this Meteor Chef article](https://themeteorchef.com/tutorials/getting-started-with-react-router-v4) using React Router 4.
+## routing / redirects
+React Router 4 props are accessible in every page level component. This allows access to 'redirect' functions and url params, etc.
 
-2 higher order components `<Authenticated />` and `<Public />` are used in the top level App.js component. They are used to render routes and redirect as needed.  When logged in, users are redirected to the '/profile' route. When logged out, users are redirect to the '/login' route.
+When logged in, users are redirected to the '/profile' route. When logged out, users are redirect to the '/login' route.
 
 ## folder structure
 
 The folder structure is developer friendly, easy to navigate and follows the official Meteor docs. 
 ### pages
-Each 'route' is represented by a folder in the 'pages' directory. All data fetching is done at this top page level.
+Each 'route' is represented by a folder in the 'pages' directory. Most data fetching is done at this top page level. These pages are the 'smart' or 'container' components. They fetch data and pass it as props to presentational components.
 
 ### components
-Reusable components in the 'components' directory are imported as needed. If a component requires data, it is passed as props from the parent component. This means props are usually passed only 1 component away.
+Reusable components in the 'components' directory are 'dumb' or ''presentational' components. These are mostly functional, stateless components. If a component requires data, it is passed as props from it's page component.
+
+*Note:* Meteor's `withTracker` can also access data in any sub component (if really needed).
 
 ### api
 The 'api' folder contains 1 folder per collection (all methods and publications for each endpoint are exclusive to each folder). This makes it easy to maintain each collection.
+
+#### methods
+All methods use [mdg:validated-method](https://atmospherejs.com/mdg/validated-method). The benefits of validated methods over regular methods are listed here: [https://atmospherejs.com/mdg/validated-method#benefits-of-validatedmethod](https://atmospherejs.com/mdg/validated-method#benefits-of-validatedmethod)
+
+[didericis:callpromise-mixin](https://atmospherejs.com/didericis/callpromise-mixin) is used as a mixin with validated methods to return a promise to the client instead of a callback. Async/await code is used on the client for handling the promise based methods.
+
 
 The overall folder structure and component code are designed to be as modular as possible.
 
 ## scss
 SCSS is also locally scoped to each page/component folder. This makes managing styles easy, as .scss files are in the same folder as the component file.
+
+*Note:* although most styling can be done via 'classes' using the Bootstrap API (see below)
 
 ### global styles
 There is 1 main.scss file that imports Bootstrap and 1 custom.scss to override default styles. App-wide custom theming can be setup easily in custom.scss.
