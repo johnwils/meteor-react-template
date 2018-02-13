@@ -8,8 +8,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Navbar from '../../ui/components/Navbar';
 
 // import routes
-import Public from '../pages/Public';
-import Authenticated from '../pages/Authenticated';
+import PropsRoute from '../../ui/pages/PropsRoute';
 import Landing from '../../ui/pages/Landing';
 import Login from '../../ui/pages/Login';
 import Signup from '../../ui/pages/Signup';
@@ -27,11 +26,11 @@ const App = props => (
       {props.loggingIn && <Spinner />}
       <div className="container-fluid">
         <Switch>
-          <Public path="/login" component={Login} {...props} />
-          <Route exact name="landing" path="/" component={Landing} />
-          <Public path="/signup" component={Signup} {...props} />
-          <Authenticated exact path="/profile" component={Profile} {...props} />
-          <Route name="recover-password" path="/recover-password" component={RecoverPassword} />
+          <PropsRoute exact name="landing" path="/" component={Landing} {...props} />
+          <PropsRoute exact path="/login" component={Login} {...props} />
+          <PropsRoute exact path="/signup" component={Signup} {...props} />
+          <PropsRoute exact path="/profile" component={Profile} {...props} />
+          <PropsRoute exact path="/recover-password" component={RecoverPassword} {...props} />
           {/*
           TODO: add remaining routes
           <Authenticated exact path="/profile/:_id" component={Profile} {...props} />
