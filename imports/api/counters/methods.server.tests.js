@@ -6,7 +6,7 @@
 import { Meteor } from 'meteor/meteor';
 import { assert } from 'meteor/practicalmeteor:chai';
 import Counters from './counters.js';
-import './methods.server.js';
+import { countersInsert } from './methods.server.js';
 
 if (Meteor.isServer) {
   describe('counters method', function () {
@@ -14,11 +14,8 @@ if (Meteor.isServer) {
       Counters.remove({});
     });
 
-    it('can add a new counter', function () {
-      const addCounter = Meteor.server.method_handlers['counters.insert'];
-
-      addCounter.apply({}, [this.userId]);
-
+    it('can add a new counter', async function () {
+      await countersInsert.call();
       assert.equal(Counters.find().count(), 1);
     });
   });

@@ -1,3 +1,4 @@
+/* eslint import/prefer-default-export: 0 */
 /**
  * Shared client and server meteor methods
  *
@@ -7,24 +8,24 @@
  */
 
 import { Meteor } from 'meteor/meteor';
+import { ValidatedMethod } from 'meteor/mdg:validated-method';
+import { CallPromiseMixin } from 'meteor/didericis:callpromise-mixin';
 import { check } from 'meteor/check';
 import Counters from './counters.js';
 
 const authCheck = (serverId, id) => !serverId === id;
 
-Meteor.methods({
-  'counters.insert'() {
-    console.log('Meteor.userId()', Meteor.userId());
-    return Counters.insert({
-      _id: Meteor.userId(),
-      count: Number(0),
-    });
-  },
-  'counters.increase'(id) {
+export const countersIncrease = new ValidatedMethod({
+  name: 'counters.increase',
+  mixins: [CallPromiseMixin],
+  validate({ id }) {
     check(id, String);
-    if (authCheck(this.userId, id)) {
+    if (authCheck(id, this.userId)) {
       throw new Meteor.Error('not authorized', 'id mismatch');
     }
+  },
+  run({ id }) {
+    console.log('counters.increase', id);
     return Counters.update(
       { _id: id },
       {
