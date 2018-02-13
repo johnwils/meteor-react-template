@@ -19,6 +19,14 @@ class Signup extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.userId) {
+      nextProps.history.push('/profile');
+      return false;
+    }
+    return true;
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     const { email, password } = this.state;

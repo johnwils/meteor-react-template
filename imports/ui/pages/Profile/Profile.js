@@ -19,38 +19,55 @@ import Text from '../../components/Text';
 
 import './Profile.scss';
 
-const Profile = ({
-  userId,
-  // remote example (if using ddp)
-  // usersReady,
-  // users,
-  countersReady,
-  counter,
-}) => { // eslint-disable-line
-  // remote example (if using ddp)
-  /*
-  console.log('usersReady', usersReady);
-  console.log('users', users);
-  */
-  return (
-    <div className="profile-page">
-      <h1>Profile Page</h1>
-      <Button target="userId" type="primary" title="Click for User Info" />
-      {countersReady && <Modal target="userId" title="User Info" body={userId} counter={counter} />}
-      <hr />
-      {countersReady && <Text count={counter.count} />}
-      <AddCountButton />
-    </div>
-  );
+const Profile = class extends React.Component {
+  componentWillMount() {
+    if (!this.props.userId) {
+      this.props.history.push('/login');
+      return null;
+    }
+  }
+  render() {
+    const {
+      userId,
+      // remote example (if using ddp)
+      // usersReady,
+      // users,
+      countersReady,
+      counter,
+    } = this.props;
+
+    // eslint-disable-line
+    // remote example (if using ddp)
+    /*
+    console.log('usersReady', usersReady);
+    console.log('users', users);
+    */
+    if (!this.props.userId) {
+      return null;
+    }
+    return (
+      <div className="profile-page">
+        <h1>Profile Page</h1>
+        <Button target="userId" type="primary" title="Click for User Info" />
+        {countersReady && (
+          <Modal target="userId" title="User Info" body={userId} counter={counter} />
+        )}
+        <hr />
+        {countersReady && <Text count={counter.count} />}
+        <AddCountButton />
+      </div>
+    );
+  }
 };
 
 Profile.defaultProps = {
   // users: null, remote example (if using ddp)
+  userId: null,
   counter: null,
 };
 
 Profile.propTypes = {
-  userId: PropTypes.string.isRequired,
+  userId: Meteor.user() ? PropTypes.string.isRequired : () => null,
   // remote example (if using ddp)
   // usersReady: PropTypes.bool.isRequired,
   // users: Meteor.user() ? PropTypes.array.isRequired : () => null,
