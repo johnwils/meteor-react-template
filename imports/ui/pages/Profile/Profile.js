@@ -89,7 +89,7 @@ export default withTracker(({ userId }) => {
   */
 
   // counters example
-  const countersSub = Meteor.subscribe('counters.all');
+  const countersSub = Meteor.subscribe('counters.user');
   const counter = Counters.findOne(userId);
   const countersReady = countersSub.ready() && !!counter;
   return {

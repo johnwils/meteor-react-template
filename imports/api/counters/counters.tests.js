@@ -1,5 +1,5 @@
+/* eslint-disable no-undef, no-underscore-dangle */
 // Tests for the behavior of the collection
-//
 // https://guide.meteor.com/testing.html
 
 import { Meteor } from 'meteor/meteor';

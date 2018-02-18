@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 // Tests for publications
-//
 // https://guide.meteor.com/testing.html
 
 import { assert } from 'meteor/practicalmeteor:chai';
