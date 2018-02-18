@@ -43,7 +43,7 @@ When logged out, users are redirect to the '/login' route.
 
 ## folder structure
 
-The folder structure is modular, developer friendly, easy to navigate and follows the imports structure of the official Meteor docs.
+The folder structure is modular, developer friendly, easy to navigate and follows the import structure of the official Meteor docs.
 
 ### pages
 Each 'route' is represented by a folder in the 'pages' directory. Most data fetching is done at this top page level. These pages are the 'smart' or 'container' components. They fetch data and pass it as props to presentational components.
@@ -54,27 +54,25 @@ Reusable components in the 'components' directory are 'dumb' or ''presentational
 *Note:* Meteor's reactive `withTracker` can also fetch data in any sub component (if really needed).
 
 ### api
-The 'api' folder contains 1 folder per collection (all methods and publications for each endpoint are exclusive to each folder). This makes it easy to maintain each collection endpoint.
+The 'api' folder contains 1 folder per collection (all methods and publications for each endpoint are exclusive to each folder). This makes it easy to maintain each collection endpoint. All collections use `aldeed:collection2` to enable schema validation on inserts. Both collections and methods use `simpl-schema` to validate paramaters.
 
 #### methods
-All methods use MDG's [mdg:validated-method](https://atmospherejs.com/mdg/validated-method). The benefits of validated methods over regular methods are listed here: [https://atmospherejs.com/mdg/validated-method#benefits-of-validatedmethod](https://atmospherejs.com/mdg/validated-method#benefits-of-validatedmethod)
+Methods use MDG's [mdg:validated-method](https://atmospherejs.com/mdg/validated-method). The benefits of validated methods over regular methods are listed here: [https://atmospherejs.com/mdg/validated-method#benefits-of-validatedmethod](https://atmospherejs.com/mdg/validated-method#benefits-of-validatedmethod)
 
 ##### Validated Method Mixins:
 
-To further build on validated methods, the following mixins add used to add functionality.
+The following mixins are used with methods:
 
-[didericis:callpromise-mixin](https://atmospherejs.com/didericis/callpromise-mixin) is used to return a promise to the client instead of a callback. Async/await code is used on the client for handling methods.
+- [didericis:callpromise-mixin](https://atmospherejs.com/didericis/callpromise-mixin) is used to return a promise to the client instead of a callback. Async/await code is used on the client for handling methods.
 
-[lacosta:method-hooks](https://atmospherejs.com/lacosta/method-hooks) is used to provide before and after hooks when methods are called.
+- [lacosta:method-hooks](https://atmospherejs.com/lacosta/method-hooks) provides before and after hooks when methods are called.
 
-[tunifight:loggedin-mixin](https://atmospherejs.com/tunifight/loggedin-mixin) is used to only allow logged-in users to call methods. It also uses `alanning:roles` to check the user has the correct role to call the method.
+- [tunifight:loggedin-mixin](https://atmospherejs.com/tunifight/loggedin-mixin) is used to only allow logged-in users to call methods and uses `alanning:roles` to check the user has the correct role privileges to call the method.
 
-## Roles
-`alanning:roles` is used to add an 'admin' role to the first registered user.
+## roles
+Basic roles are defined using `alanning:roles`.
 
-Subsequent users are assigned a 'user' role. 
-
-This can be built upon to provide different access to different users.
+The first user is 'admin' and subsequent users are 'user'.
 
 ## scss
 SCSS is also locally scoped to each page/component folder. This makes managing styles easy, as .scss files are in the same folder as the component file.
@@ -114,13 +112,18 @@ The ddp connection enables access to the existing server's methods, collections 
 - react-router-dom
 - autoprefixer
 - bootstrap
+- simpl-schema
 
 **Meteor packages added**:
 
-- fourseven:scss          (sass/css support in .scss files)
 - react-meteor-data       (provides HOCs to fetch data reactively from collections using `withTracker`)
 - accounts-password
-- meteortoys:allthings    (collection diagnostics)
+- alanning:roles
+- mdg:validated-method
+- aldeed:collection2@3.0.0
+- matb33:collection-hooks
+- msavin:mongol
+- fourseven:scss          (sass/css support in .scss files)
 - juliancwirko:postcss    (enables autoprefxer)
 - browser-policy          (restrict allowed origins for added security)
 - fortawesome:fontawesome (icons)
