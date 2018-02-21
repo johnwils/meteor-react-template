@@ -1,5 +1,6 @@
 import { Accounts } from 'meteor/accounts-base';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 // import components
@@ -19,8 +20,14 @@ class Signup extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillMount() {
+    if (this.props.loggedIn) {
+      return this.props.history.push('/profile');
+    }
+  }
+
   shouldComponentUpdate(nextProps) {
-    if (nextProps.userId) {
+    if (nextProps.loggedIn) {
       nextProps.history.push('/profile');
       return false;
     }
@@ -39,6 +46,10 @@ class Signup extends React.Component {
   }
 
   render() {
+    if (this.props.loggedIn) {
+      return null;
+    }
+
     const { errMsg } = this.state;
     return (
       <section className="signup-page">
@@ -106,5 +117,12 @@ class Signup extends React.Component {
     );
   }
 }
+
+Signup.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default Signup;

@@ -19,16 +19,24 @@ import Text from '../../components/Text';
 
 import './Profile.scss';
 
-const Profile = class extends React.Component {
+class Profile extends React.Component {
   componentWillMount() {
-    if (!this.props.userId) {
-      this.props.history.push('/login');
-      return null;
+    if (!this.props.loggedIn) {
+      return this.props.history.push('/login');
     }
   }
+
+  shouldComponentUpdate(nextProps) {
+    if (!nextProps.loggedIn) {
+      nextProps.history.push('/login');
+      return false;
+    }
+    return true;
+  }
+
   render() {
     const {
-      userId,
+      loggedIn,
       // remote example (if using ddp)
       // usersReady,
       // users,
@@ -42,7 +50,7 @@ const Profile = class extends React.Component {
     console.log('usersReady', usersReady);
     console.log('users', users);
     */
-    if (!this.props.userId) {
+    if (!loggedIn) {
       return null;
     }
     return (
@@ -50,7 +58,7 @@ const Profile = class extends React.Component {
         <h1>Profile Page</h1>
         <Button target="userId" type="primary" title="Click for User Info" />
         {countersReady && (
-          <Modal target="userId" title="User Info" body={userId} counter={counter} />
+          <Modal target="userId" title="User Info" body={Meteor.userId()} counter={counter} />
         )}
         <hr />
         {countersReady && <Text count={counter.count} />}
@@ -58,16 +66,18 @@ const Profile = class extends React.Component {
       </div>
     );
   }
-};
+}
 
 Profile.defaultProps = {
   // users: null, remote example (if using ddp)
-  userId: null,
   counter: null,
 };
 
 Profile.propTypes = {
-  userId: Meteor.user() ? PropTypes.string.isRequired : () => null,
+  loggedIn: PropTypes.bool.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
   // remote example (if using ddp)
   // usersReady: PropTypes.bool.isRequired,
   // users: Meteor.user() ? PropTypes.array.isRequired : () => null,
@@ -80,7 +90,7 @@ Profile.propTypes = {
     : () => null,
 };
 
-export default withTracker(({ userId }) => {
+export default withTracker(() => {
   // remote example (if using ddp)
   /*
   const usersSub = Remote.subscribe('users.all'); // publication needs to be set on remote server
@@ -90,7 +100,7 @@ export default withTracker(({ userId }) => {
 
   // counters example
   const countersSub = Meteor.subscribe('counters.user');
-  const counter = Counters.findOne(userId);
+  const counter = Counters.findOne({ _id: Meteor.userId() });
   const countersReady = countersSub.ready() && !!counter;
   return {
     // remote example (if using ddp)

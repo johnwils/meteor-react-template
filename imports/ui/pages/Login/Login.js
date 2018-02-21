@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 // import components
@@ -19,8 +20,14 @@ class Login extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillMount() {
+    if (this.props.loggedIn) {
+      return this.props.history.push('/profile');
+    }
+  }
+
   shouldComponentUpdate(nextProps) {
-    if (nextProps.userId) {
+    if (nextProps.loggedIn) {
       nextProps.history.push('/profile');
       return false;
     }
@@ -38,6 +45,10 @@ class Login extends React.Component {
     });
   }
   render() {
+    if (this.props.loggedIn) {
+      return null;
+    }
+
     const { errMsg } = this.state;
     return (
       <section className="login-page">
@@ -104,3 +115,10 @@ class Login extends React.Component {
 }
 
 export default Login;
+
+Login.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};

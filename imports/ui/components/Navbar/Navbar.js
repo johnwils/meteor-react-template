@@ -32,7 +32,7 @@ const SearchBar = () => (
   </form>
 );
 
-const AuthenticatedNav = ({ user }) => [
+const LoggedInNav = () => [
   <SearchBar key="searchbar" />,
   <li key="dropdown" className="nav-item dropdown ml-4">
     <span
@@ -41,9 +41,7 @@ const AuthenticatedNav = ({ user }) => [
       data-toggle="dropdown"
       aria-haspopup="true"
       aria-expanded="false"
-    >
-      {user.emails[0].address}
-    </span>
+    />
     <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
       <NavLink to="/profile">
         <button className="dropdown-item">Profile</button>
@@ -56,9 +54,9 @@ const AuthenticatedNav = ({ user }) => [
   </li>,
 ];
 
-const Status = ({ authenticated }) => (
+const Status = ({ loggedIn }) => (
   <div className="my-2 mr-3">
-    {authenticated ? (
+    {loggedIn ? (
       <span className="text-success">
         <i className="fa fa-circle" />
       </span>
@@ -71,12 +69,12 @@ const Status = ({ authenticated }) => (
 );
 
 Status.propTypes = {
-  authenticated: PropTypes.bool.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
 };
 
-const Navbar = ({ authenticated, user }) => (
+const Navbar = ({ loggedIn }) => (
   <nav className="navbar navbar-expand-md navbar-light bg-light justify-content-between py-0">
-    <Status authenticated={authenticated} />
+    <Status loggedIn={loggedIn} />
     <span className="navbar-brand my-2">
       <NavLink to="/">Brand</NavLink>
     </span>
@@ -92,20 +90,13 @@ const Navbar = ({ authenticated, user }) => (
       <span className="navbar-toggler-icon" />
     </button>
     <div className="collapse navbar-collapse" id="navbarContent">
-      <ul className="navbar-nav ml-auto">
-        {authenticated ? <AuthenticatedNav user={user} /> : <PublicNav />}
-      </ul>
+      <ul className="navbar-nav ml-auto">{loggedIn ? <LoggedInNav /> : <PublicNav />}</ul>
     </div>
   </nav>
 );
 
-Navbar.defaultProps = {
-  user: null,
-};
-
 Navbar.propTypes = {
-  authenticated: PropTypes.bool.isRequired,
-  user: Meteor.user() ? PropTypes.object.isRequired : () => null,
+  loggedIn: PropTypes.bool.isRequired,
 };
 
 export default Navbar;
