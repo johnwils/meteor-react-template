@@ -1,3 +1,3 @@
-import Text from './Text.js';
+import Text from "./Text.js";
 
 export default Text;

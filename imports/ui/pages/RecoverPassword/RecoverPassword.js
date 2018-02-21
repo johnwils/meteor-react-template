@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import './RecoverPassword.scss';
+import "./RecoverPassword.scss";
 
 const RecoverPassword = () => (
   <div className="recover-password-page">

@@ -1,9 +1,9 @@
-import { Meteor } from 'meteor/meteor';
-import React from 'react';
+import { Meteor } from "meteor/meteor";
+import React from "react";
 
-import { countersIncrease } from '../../../api/counters/methods';
+import { countersIncrease } from "../../../api/counters/methods";
 
-import './Button.scss';
+import "./Button.scss";
 
 const handlePress = () => countersIncrease.call({ _id: Meteor.userId() });
 

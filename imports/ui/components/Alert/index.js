@@ -1,3 +1,3 @@
-import Alert from './Alert.js';
+import Alert from "./Alert.js";
 
 export default Alert;

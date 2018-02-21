@@ -1,34 +1,34 @@
-import { Meteor } from 'meteor/meteor';
-import React from 'react';
-import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { Meteor } from "meteor/meteor";
+import React from "react";
+import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
 
 // import components
-import Alert from '../../components/Alert';
+import Alert from "../../components/Alert";
 
 // import styles
-import './Login.scss';
+import "./Login.scss";
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      password: '',
-      errMsg: null,
+      email: "",
+      password: "",
+      errMsg: null
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillMount() {
     if (this.props.loggedIn) {
-      return this.props.history.push('/profile');
+      return this.props.history.push("/profile");
     }
   }
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.loggedIn) {
-      nextProps.history.push('/profile');
+      nextProps.history.push("/profile");
       return false;
     }
     return true;
@@ -37,7 +37,7 @@ class Login extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const { email, password } = this.state;
-    Meteor.loginWithPassword(email, password, (err) => {
+    Meteor.loginWithPassword(email, password, err => {
       if (err) {
         this.setState({ errMsg: err.reason });
         return console.log(err);
@@ -52,7 +52,7 @@ class Login extends React.Component {
     const { errMsg } = this.state;
     return (
       <section className="login-page">
-        <div className="card mx-auto" style={{ maxWidth: '28rem' }}>
+        <div className="card mx-auto" style={{ maxWidth: "28rem" }}>
           <div className="card-header">
             <div className="brand">
               <div className="text-center">
@@ -96,18 +96,24 @@ class Login extends React.Component {
                   <NavLink to="/recover-password">Forgot Password?</NavLink>
                 </div>
                 <div className="form-group no-margin">
-                  <button type="submit" className="btn btn-primary btn-block mb-2">
+                  <button
+                    type="submit"
+                    className="btn btn-primary btn-block mb-2"
+                  >
                     Login
                   </button>
                   {errMsg && <Alert errMsg={errMsg} />}
                 </div>
                 <div className="margin-top20">
-                  Don&apos;t have an account? <NavLink to="/signup">Create one</NavLink>
+                  Don&apos;t have an account?{" "}
+                  <NavLink to="/signup">Create one</NavLink>
                 </div>
               </form>
             </div>
           </div>
-          <div className="footer text-center">&copy; {new Date().getFullYear()}</div>
+          <div className="footer text-center">
+            &copy; {new Date().getFullYear()}
+          </div>
         </div>
       </section>
     );
@@ -119,6 +125,6 @@ export default Login;
 Login.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
+    push: PropTypes.func.isRequired
+  }).isRequired
 };

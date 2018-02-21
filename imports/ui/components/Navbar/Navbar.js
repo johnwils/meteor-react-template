@@ -1,9 +1,9 @@
-import { Meteor } from 'meteor/meteor';
-import React from 'react';
-import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
+import { Meteor } from "meteor/meteor";
+import React from "react";
+import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
 
-import './Navbar.scss';
+import "./Navbar.scss";
 
 const PublicNav = () => [
   <li key="login" className="nav-item">
@@ -15,7 +15,7 @@ const PublicNav = () => [
     <span className="nav-link">
       <NavLink to="/signup">Signup</NavLink>
     </span>
-  </li>,
+  </li>
 ];
 
 const SearchBar = () => (
@@ -42,7 +42,10 @@ const LoggedInNav = () => [
       aria-haspopup="true"
       aria-expanded="false"
     />
-    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+    <div
+      className="dropdown-menu dropdown-menu-right"
+      aria-labelledby="navbarDropdownMenuLink"
+    >
       <NavLink to="/profile">
         <button className="dropdown-item">Profile</button>
       </NavLink>
@@ -51,7 +54,7 @@ const LoggedInNav = () => [
         <button className="dropdown-item">Logout</button>
       </NavLink>
     </div>
-  </li>,
+  </li>
 ];
 
 const Status = ({ loggedIn }) => (
@@ -69,7 +72,7 @@ const Status = ({ loggedIn }) => (
 );
 
 Status.propTypes = {
-  loggedIn: PropTypes.bool.isRequired,
+  loggedIn: PropTypes.bool.isRequired
 };
 
 const Navbar = ({ loggedIn }) => (
@@ -90,13 +93,15 @@ const Navbar = ({ loggedIn }) => (
       <span className="navbar-toggler-icon" />
     </button>
     <div className="collapse navbar-collapse" id="navbarContent">
-      <ul className="navbar-nav ml-auto">{loggedIn ? <LoggedInNav /> : <PublicNav />}</ul>
+      <ul className="navbar-nav ml-auto">
+        {loggedIn ? <LoggedInNav /> : <PublicNav />}
+      </ul>
     </div>
   </nav>
 );
 
 Navbar.propTypes = {
-  loggedIn: PropTypes.bool.isRequired,
+  loggedIn: PropTypes.bool.isRequired
 };
 
 export default Navbar;

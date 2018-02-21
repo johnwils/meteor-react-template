@@ -1,18 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import './Landing.scss';
+import "./Landing.scss";
 
 class Landing extends React.Component {
   componentWillMount() {
     if (this.props.loggedIn) {
-      return this.props.history.push('/profile');
+      return this.props.history.push("/profile");
     }
   }
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.loggedIn) {
-      nextProps.history.push('/profile');
+      nextProps.history.push("/profile");
       return false;
     }
     return true;
@@ -33,8 +33,8 @@ class Landing extends React.Component {
 Landing.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
+    push: PropTypes.func.isRequired
+  }).isRequired
 };
 
 export default Landing;

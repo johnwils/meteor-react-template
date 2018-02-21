@@ -1,3 +1,3 @@
-import RecoverPassword from './RecoverPassword.js';
+import RecoverPassword from "./RecoverPassword.js";
 
 export default RecoverPassword;

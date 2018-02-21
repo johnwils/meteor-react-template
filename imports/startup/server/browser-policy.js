@@ -5,12 +5,12 @@
  * cross-site scripting and clickjacking.
  */
 
-import { BrowserPolicy } from 'meteor/browser-policy-common';
+import { BrowserPolicy } from "meteor/browser-policy-common";
 
 /**
  * allowed images
  */
-const allowImageOrigin = ['via.placeholder.com'];
+const allowImageOrigin = ["via.placeholder.com"];
 allowImageOrigin.forEach(o => BrowserPolicy.content.allowImageOrigin(o));
 
 /**
