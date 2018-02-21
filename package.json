@@ -6,7 +6,7 @@
     "test": "npm run test-server && npm run test-client",
     "test-server": "TEST_CLIENT=0 SERVER_TEST_REPORTER=\"list\" meteor test --once --driver-package meteortesting:mocha",
     "test-client": "jest",
-    "prettier": "prettier --write \"client/**/*.js\" \"imports/**/*.js\" \"server/**/*.js\" --print-width=100"
+    "prettier": "prettier --write \"client/**/*.js\" \"imports/**/*.js\" \"server/**/*.js\""
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.40",
