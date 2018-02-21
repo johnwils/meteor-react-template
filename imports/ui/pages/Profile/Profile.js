@@ -93,7 +93,7 @@ Profile.propTypes = {
 export default withTracker(() => {
   // remote example (if using ddp)
   /*
-  const usersSub = Remote.subscribe('users.all'); // publication needs to be set on remote server
+  const usersSub = Remote.subscribe('users.friends'); // publication needs to be set on remote server
   const users = Users.find().fetch();
   const usersReady = usersSub.ready() && !!users;
   */
