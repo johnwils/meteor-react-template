@@ -2,13 +2,18 @@
   "name": "meteor-bootstrap4-react-router4-template",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "start": "meteor run",
+    "test": "npm run test-server && npm run test-client",
+    "test-server": "TEST_CLIENT=0 SERVER_TEST_REPORTER=\"list\" meteor test --once --driver-package meteortesting:mocha",
+    "test-client": "jest",
+    "prettier": "prettier --write \"client/**/*.js\" \"imports/**/*.js\" \"server/**/*.js\" --print-width=100"
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.40",
     "bcrypt": "^1.0.3",
     "bootstrap": "^4.0.0",
     "jquery": "^3.3.1",
+    "lodash": "^4.17.5",
     "meteor-node-stubs": "^0.3.2",
     "popper.js": "^1.13.0",
     "prop-types": "^15.6.0",
@@ -22,13 +27,18 @@
     "@meteorjs/eslint-config-meteor": "^1.0.5",
     "autoprefixer": "^8.0.0",
     "babel-eslint": "^8.2.1",
+    "chromedriver": "^2.35.0",
     "eslint": "^4.17.0",
     "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-import-resolver-meteor": "^0.4.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-meteor": "^4.2.0",
-    "eslint-plugin-react": "^7.6.1"
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.6.1",
+    "jest": "^22.4.0",
+    "prettier": "1.10.2"
   },
   "postcss": {
     "plugins": {
