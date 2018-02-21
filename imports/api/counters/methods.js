@@ -29,15 +29,15 @@ const checkLoggedInError = {
  * countersIncrease
  */
 
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-unused-vars, arrow-body-style
 const beforeHookExample = (methodArgs, methodOptions) => {
-  console.log('countersIncrease before hook');
+  // console.log('countersIncrease before hook');
   // perform tasks
   return methodArgs;
 };
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-unused-vars, arrow-body-style
 const afterHookExample = (methodArgs, returnValue, methodOptions) => {
-  console.log('countersIncrease: after hook:');
+  // console.log('countersIncrease: after hook:');
   // perform tasks
   return returnValue;
 };
@@ -62,7 +62,7 @@ export const countersIncrease = new ValidatedMethod({
     },
   }).validator(),
   run({ _id }) {
-    console.log('counters.increase', _id);
+    // console.log('counters.increase', _id);
     if (Meteor.isServer) {
       // secure code - not available on the client
     }
@@ -83,13 +83,15 @@ export const countersIncrease = new ValidatedMethod({
  */
 export const countersInsert = new ValidatedMethod({
   name: 'counters.insert',
+  mixin: [CallPromiseMixin],
   validate: null,
   run() {
     const _id = Random.id();
-    console.log('counters.insert', _id);
-    return Counters.insert({
+    // console.log('counters.insert', _id);
+    const counterId = Counters.insert({
       _id,
       count: Number(0),
     });
+    return counterId;
   },
 });
