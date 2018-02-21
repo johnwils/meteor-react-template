@@ -33,6 +33,7 @@ aldeed:collection2@3.0.0
 matb33:collection-hooks
 # msavin:mongol
 alanning:roles
+mizzao:user-status
 
 mdg:validated-method
 didericis:callpromise-mixin
