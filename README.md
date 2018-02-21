@@ -53,7 +53,7 @@ Reusable components in the 'components' directory are 'dumb' or ''presentational
 *Note:* Meteor's reactive `withTracker` can also fetch data in any sub component (if really needed).
 
 ### API
-The 'api' folder contains 1 folder per collection (all methods and publications for each endpoint are exclusive to each folder). This makes it easy to maintain each collection endpoint. All collections use `aldeed:collection2` to enable schema validation on inserts. Both collections and methods use `simpl-schema` to validate paramaters.
+The 'api' folder contains 1 folder per collection (all methods and publications for each endpoint are exclusive to each folder). This makes it easy to maintain each collection endpoint. All collections use `aldeed:collection2` to enable schema validation on inserts. Both collections and methods use `simpl-schema` to validate parameters.
 
 #### Methods
 Methods use MDG's [mdg:validated-method](https://atmospherejs.com/mdg/validated-method). The benefits of validated methods over regular methods are listed here: [https://atmospherejs.com/mdg/validated-method#benefits-of-validatedmethod](https://atmospherejs.com/mdg/validated-method#benefits-of-validatedmethod)
@@ -79,12 +79,12 @@ SCSS is also locally scoped to each page/component folder. This makes managing s
 *Note:* most styling can be done via 'classes' using the Bootstrap API (see below)
 
 ### Global styles
-There is 1 main.scss file that imports Bootstrap and 1 custom.scss to override default styles. App-wide custom theming can be setup easily in custom.scss.
+There is 1 main.scss file that imports Bootstrap and 1 custom.scss to override default styles. An app-wide custom theme can be setup easily in custom.scss.
 ## Bootstrap 4
 Bootstrap is being used directly on elements (adding to the 'class' or 'className') using the [v4 api](https://getbootstrap.com/docs/4.0/components/buttons/). This includes (so far) navbar, collapsed navbar, login/signup cards, search bar, dropdown menu and a modal. The api is well documented and easy to use. This approach limits the dependency on common external bootstrap packages.
 
 ## Autoprefixer
-Meteor's built-in css minifier is replaced with `juliancwirko:postcss` ([mentioned](https://guide.meteor.com/build-tool.html#postcss) in the meteor docs). This package minifies CSS plus it makes use of a postcss entry in package.json to apply autoprefixer for wider browser support.
+Meteor's built-in css minify tool is replaced with `juliancwirko:postcss` ([mentioned](https://guide.meteor.com/build-tool.html#postcss) in the meteor docs). This package minifies CSS plus it makes use of a postcss entry in package.json to apply autoprefixer for wider browser support.
 
 ## Responsive layout
 The grid from Bootstrap 4 ensures the layout is responsive on desktop and mobile. The navbar, modal and login/signup cards are good examples to check out on mobile.
