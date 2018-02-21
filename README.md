@@ -17,7 +17,7 @@ Current routes setup:
 ## Quick start
 Clone repository:
 ```
-git clone https://git.jdwilson.ca/john/meteor-react-template.git
+git clone https://github.com/johnwils/meteor-react-template.git
 ```
 Install packages:
 ```
