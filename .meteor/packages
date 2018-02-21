@@ -22,7 +22,7 @@ ecmascript@0.10.0                 # Enable ECMAScript2015+ syntax in app code
 shell-server@0.3.1                # Server-side component of the `meteor shell` command
 
 jquery                            # Uses latest node_modules/jquery version if installed, falls back to 1.11.11
-practicalmeteor:mocha             # A package for writing and running your meteor app and package tests with mocha
+meteortesting:mocha
 practicalmeteor:chai
 johanbrook:publication-collector  # Test a Meteor publication by collecting its output
 fourseven:scss
