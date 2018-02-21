@@ -31,7 +31,7 @@ fortawesome:fontawesome
 browser-policy
 aldeed:collection2@3.0.0
 matb33:collection-hooks
-msavin:mongol
+# msavin:mongol
 alanning:roles
 
 mdg:validated-method
