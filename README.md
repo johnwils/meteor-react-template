@@ -95,6 +95,14 @@ The grid from Bootstrap 4 ensures the layout is responsive on desktop and mobile
 Mocha is used to run tests and log test results on the server.
 Chai is used as an expectation / assertion library.
 
+To run server tests on the example Counters methods and publications run:
+
+```
+npm run test-server
+```
+
+The server tests are in `imports/api/counters/`
+
 ### Client tests (todo)
 Jest is used on the client to test React components.
 Enzyme is used to help test, assert, manipulate, and traverse React components.
