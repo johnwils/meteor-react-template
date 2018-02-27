@@ -76,7 +76,7 @@ Status.propTypes = {
 };
 
 const Navbar = ({ loggedIn }) => (
-  <nav className="navbar navbar-expand-md navbar-light bg-light justify-content-between py-0">
+  <nav className="navbar navbar-expand-md justify-content-between py-0">
     <Status loggedIn={loggedIn} />
     <span className="navbar-brand my-2">
       <NavLink to="/">Brand</NavLink>
