@@ -1,10 +1,10 @@
-import { Meteor } from "meteor/meteor";
-import { withTracker } from "meteor/react-meteor-data";
-import React from "react";
-import PropTypes from "prop-types";
+import { Meteor } from 'meteor/meteor';
+import { withTracker } from 'meteor/react-meteor-data';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 // collection
-import Counters from "../../../api/counters/counters";
+import Counters from '../../../api/counters/counters';
 
 // remote example (if using ddp)
 /*
@@ -13,22 +13,22 @@ import Users from '../../../api/remote/users';
 */
 
 // components
-import Modal, { Button } from "../../components/Modal/Modal";
-import AddCountButton from "../../components/Button";
-import Text from "../../components/Text";
+import Modal, { Button } from '../../components/Modal/Modal';
+import AddCountButton from '../../components/Button';
+import Text from '../../components/Text';
 
-import "./Profile.scss";
+import './Profile.scss';
 
 class Profile extends React.Component {
   componentWillMount() {
     if (!this.props.loggedIn) {
-      return this.props.history.push("/login");
+      return this.props.history.push('/login');
     }
   }
 
   shouldComponentUpdate(nextProps) {
     if (!nextProps.loggedIn) {
-      nextProps.history.push("/login");
+      nextProps.history.push('/login');
       return false;
     }
     return true;
@@ -41,7 +41,7 @@ class Profile extends React.Component {
       // usersReady,
       // users,
       countersReady,
-      counter
+      counter,
     } = this.props;
 
     // eslint-disable-line
@@ -75,13 +75,13 @@ class Profile extends React.Component {
 
 Profile.defaultProps = {
   // users: null, remote example (if using ddp)
-  counter: null
+  counter: null,
 };
 
 Profile.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   history: PropTypes.shape({
-    push: PropTypes.func.isRequired
+    push: PropTypes.func.isRequired,
   }).isRequired,
   // remote example (if using ddp)
   // usersReady: PropTypes.bool.isRequired,
@@ -90,9 +90,9 @@ Profile.propTypes = {
   counter: Meteor.user()
     ? PropTypes.shape({
         _id: PropTypes.string,
-        count: PropTypes.number
+        count: PropTypes.number,
       }).isRequired
-    : () => null
+    : () => null,
 };
 
 export default withTracker(() => {
@@ -104,7 +104,7 @@ export default withTracker(() => {
   */
 
   // counters example
-  const countersSub = Meteor.subscribe("counters.user");
+  const countersSub = Meteor.subscribe('counters.user');
   const counter = Counters.findOne({ _id: Meteor.userId() });
   const countersReady = countersSub.ready() && !!counter;
   return {
@@ -112,6 +112,6 @@ export default withTracker(() => {
     // usersReady,
     // users,
     countersReady,
-    counter
+    counter,
   };
 })(Profile);

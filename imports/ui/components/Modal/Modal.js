@@ -3,11 +3,11 @@
  * jw
  */
 
-import { Meteor } from "meteor/meteor";
-import React from "react";
-import PropTypes from "prop-types";
+import { Meteor } from 'meteor/meteor';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import "./Modal.scss";
+import './Modal.scss';
 
 export const Button = ({ target, type, title }) => (
   <button
@@ -24,15 +24,15 @@ Button.propTypes = {
   target: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.oneOf([
-    "primary",
-    "secondary",
-    "success",
-    "danger",
-    "warning",
-    "info",
-    "light",
-    "dark"
-  ]).isRequired
+    'primary',
+    'secondary',
+    'success',
+    'danger',
+    'warning',
+    'info',
+    'light',
+    'dark',
+  ]).isRequired,
 };
 
 const Modal = ({ target, title, body, counter }) => (
@@ -63,14 +63,14 @@ const Modal = ({ target, title, body, counter }) => (
           Meteor.userId():<code> {body}</code>
           <br />
           <br />
-          Meteor.user():<br />{" "}
+          Meteor.user():<br />{' '}
           <code>
-            {" "}
+            {' '}
             <pre>{JSON.stringify(Meteor.user(), null, 2)}</pre>
           </code>
-          Counter:<br />{" "}
+          Counter:<br />{' '}
           <code>
-            {" "}
+            {' '}
             <pre>{JSON.stringify(counter, null, 2)}</pre>
           </code>
         </div>
@@ -94,8 +94,8 @@ Modal.propTypes = {
   body: PropTypes.string.isRequired,
   counter: PropTypes.shape({
     _id: PropTypes.string,
-    count: PropTypes.number
-  }).isRequired
+    count: PropTypes.number,
+  }).isRequired,
 };
 
 export default Modal;

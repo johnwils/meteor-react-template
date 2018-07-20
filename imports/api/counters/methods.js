@@ -2,15 +2,15 @@
  * Meteor methods
  */
 
-import { Meteor } from "meteor/meteor";
-import { Random } from "meteor/random";
-import SimpleSchema from "simpl-schema";
-import { ValidatedMethod } from "meteor/mdg:validated-method";
-import { LoggedInMixin } from "meteor/tunifight:loggedin-mixin";
-import { MethodHooks } from "meteor/lacosta:method-hooks";
-import { CallPromiseMixin } from "meteor/didericis:callpromise-mixin";
+import { Meteor } from 'meteor/meteor';
+import { Random } from 'meteor/random';
+import SimpleSchema from 'simpl-schema';
+import { ValidatedMethod } from 'meteor/mdg:validated-method';
+import { LoggedInMixin } from 'meteor/tunifight:loggedin-mixin';
+import { MethodHooks } from 'meteor/lacosta:method-hooks';
+import { CallPromiseMixin } from 'meteor/didericis:callpromise-mixin';
 
-import Counters from "./counters.js";
+import Counters from './counters.js';
 
 /** **************** Helpers **************** */
 
@@ -18,9 +18,9 @@ const mixins = [LoggedInMixin, MethodHooks, CallPromiseMixin];
 
 // not logged in error message
 const checkLoggedInError = {
-  error: "notLogged",
-  message: "You need to be logged in to call this method",
-  reason: "You need to login"
+  error: 'notLogged',
+  message: 'You need to be logged in to call this method',
+  reason: 'You need to login',
 };
 
 /** **************** Methods **************** */
@@ -43,23 +43,23 @@ const afterHookExample = (methodArgs, returnValue, methodOptions) => {
 };
 
 export const countersIncrease = new ValidatedMethod({
-  name: "counters.increase",
+  name: 'counters.increase',
   mixins,
   beforeHooks: [beforeHookExample],
   afterHooks: [afterHookExample],
   checkLoggedInError,
   checkRoles: {
-    roles: ["admin", "user"],
+    roles: ['admin', 'user'],
     rolesError: {
-      error: "not-allowed",
-      message: "You are not allowed to call this method"
-    }
+      error: 'not-allowed',
+      message: 'You are not allowed to call this method',
+    },
   },
   validate: new SimpleSchema({
     _id: {
       type: String,
-      optional: false
-    }
+      optional: false,
+    },
   }).validator(),
   run({ _id }) {
     // console.log('counters.increase', _id);
@@ -71,18 +71,18 @@ export const countersIncrease = new ValidatedMethod({
       { _id },
       {
         $inc: {
-          count: 1
-        }
+          count: 1,
+        },
       }
     );
-  }
+  },
 });
 
 /**
  * used for example test in methods.tests.js
  */
 export const countersInsert = new ValidatedMethod({
-  name: "counters.insert",
+  name: 'counters.insert',
   mixin: [CallPromiseMixin],
   validate: null,
   run() {
@@ -90,8 +90,8 @@ export const countersInsert = new ValidatedMethod({
     // console.log('counters.insert', _id);
     const counterId = Counters.insert({
       _id,
-      count: Number(0)
+      count: Number(0),
     });
     return counterId;
-  }
+  },
 });

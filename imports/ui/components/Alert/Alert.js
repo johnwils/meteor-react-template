@@ -1,7 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import "./Alert.scss";
+import './Alert.scss';
 
 const Alert = ({ errMsg }) => (
   <div className="alert alert-warning fade show" role="alert">
@@ -10,7 +10,7 @@ const Alert = ({ errMsg }) => (
 );
 
 Alert.propTypes = {
-  errMsg: PropTypes.string.isRequired
+  errMsg: PropTypes.string.isRequired,
 };
 
 export default Alert;

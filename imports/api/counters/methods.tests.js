@@ -2,13 +2,13 @@
 // Tests for methods
 // https://guide.meteor.com/testing.html
 
-import { Meteor } from "meteor/meteor";
-import { assert } from "meteor/practicalmeteor:chai";
-import Counters from "./counters.js";
-import { countersInsert, countersIncrease } from "./methods.js";
+import { Meteor } from 'meteor/meteor';
+import { assert } from 'meteor/practicalmeteor:chai';
+import Counters from './counters.js';
+import { countersInsert, countersIncrease } from './methods.js';
 
 if (Meteor.isServer) {
-  describe("counters method", function() {
+  describe('counters method', function() {
     before(function() {
       Counters.remove({});
       Meteor.users.remove({});
@@ -17,7 +17,7 @@ if (Meteor.isServer) {
     // use same counter id for all tests
     let counterId = null;
 
-    it("can add a counter", async function(done) {
+    it('can add a counter', async function(done) {
       assert.equal(Counters.find().count(), 0);
       countersInsert.call((err, result) => {
         if (err) {
@@ -30,14 +30,14 @@ if (Meteor.isServer) {
       });
     });
 
-    it("can increase a counter", async function() {
+    it('can increase a counter', async function() {
       assert.equal(Counters.findOne(counterId).count, 0);
       // create user and assign to 'user' role
       const stubbedUserId = Accounts.createUser({
-        email: "test@user.com",
-        password: "test"
+        email: 'test@user.com',
+        password: 'test',
       });
-      Roles.addUsersToRoles(stubbedUserId, "user");
+      Roles.addUsersToRoles(stubbedUserId, 'user');
       await countersIncrease.run.call(
         { userId: stubbedUserId },
         { _id: counterId }
@@ -51,8 +51,8 @@ if (Meteor.isServer) {
       assert.equal(counter.count, 1);
       // create user *without* assigning a role
       const stubbedUserId = Accounts.createUser({
-        email: "not@in.com",
-        password: "user-role"
+        email: 'not@in.com',
+        password: 'user-role',
       });
       assert.throws(
         () =>
@@ -61,7 +61,7 @@ if (Meteor.isServer) {
             { _id: counterId }
           ),
         Error,
-        "You are not allowed to call this method [not-allowed]"
+        'You are not allowed to call this method [not-allowed]'
       );
       // should remain 1
       assert.equal(counter.count, 1);
