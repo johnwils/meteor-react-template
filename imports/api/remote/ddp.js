@@ -5,12 +5,12 @@
  * See Profile component in 'pages' directory for HOC data fetching example
  */
 
-import { DDP } from "meteor/ddp-client";
+import { DDP } from 'meteor/ddp-client';
 
 // establish ddp connection
-const remoteUrl = "";
+const remoteUrl = '';
 const Remote = DDP.connect(remoteUrl);
-Remote.onReconnect = (...args) => console.log("reconnected to ddp...", args);
+Remote.onReconnect = (...args) => console.log('reconnected to ddp...', args);
 
 export default Remote;
 

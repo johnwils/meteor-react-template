@@ -1,9 +1,9 @@
-import { Meteor } from "meteor/meteor";
-import React from "react";
-import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
+import { Meteor } from 'meteor/meteor';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
-import "./Navbar.scss";
+import './Navbar.scss';
 
 const PublicNav = () => [
   <li key="login" className="nav-item">
@@ -15,7 +15,7 @@ const PublicNav = () => [
     <span className="nav-link">
       <NavLink to="/signup">Signup</NavLink>
     </span>
-  </li>
+  </li>,
 ];
 
 const SearchBar = () => (
@@ -54,7 +54,7 @@ const LoggedInNav = () => [
         <button className="dropdown-item">Logout</button>
       </NavLink>
     </div>
-  </li>
+  </li>,
 ];
 
 const Status = ({ loggedIn }) => (
@@ -72,11 +72,11 @@ const Status = ({ loggedIn }) => (
 );
 
 Status.propTypes = {
-  loggedIn: PropTypes.bool.isRequired
+  loggedIn: PropTypes.bool.isRequired,
 };
 
 const Navbar = ({ loggedIn }) => (
-  <nav className="navbar navbar-expand-md navbar-light bg-light justify-content-between py-0">
+  <nav className="navbar navbar-expand-md justify-content-between py-0">
     <Status loggedIn={loggedIn} />
     <span className="navbar-brand my-2">
       <NavLink to="/">Brand</NavLink>
@@ -101,7 +101,7 @@ const Navbar = ({ loggedIn }) => (
 );
 
 Navbar.propTypes = {
-  loggedIn: PropTypes.bool.isRequired
+  loggedIn: PropTypes.bool.isRequired,
 };
 
 export default Navbar;

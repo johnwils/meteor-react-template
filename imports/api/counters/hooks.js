@@ -4,5 +4,5 @@
  * https://github.com/matb33/meteor-collection-hooks
  */
 
-import { Meteor } from "meteor/meteor";
-import Counters from "./counters";
+import { Meteor } from 'meteor/meteor';
+import Counters from './counters';

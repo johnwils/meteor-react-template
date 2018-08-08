@@ -4,41 +4,56 @@
   "scripts": {
     "start": "meteor run",
     "test": "npm run test-server && npm run test-client",
-    "test-server": "TEST_CLIENT=0 SERVER_TEST_REPORTER=\"list\" meteor test --once --driver-package meteortesting:mocha",
-    "test-client": "jest",
-    "prettier": "prettier --write \"client/**/*.js\" \"imports/**/*.js\" \"server/**/*.js\""
+    "test-server": "TEST_CLIENT=0 SERVER_TEST_REPORTER=\"list\" meteor test --once --driver-package meteortesting:mocha --port 3100",
+    "test-client": "NODE_ENV=UNIT_TESTING jest",
+    "prettier": "prettier --write \"client/**/*.js\" \"imports/**/*.js\" \"server/**/*.js\" --single-quote true --trailing-comma es5"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./tests/enzyme-config.js",
+    "moduleNameMapper": {
+      "^.+\\.(css|less|scss)$": "babel-jest"
+    }
   },
   "dependencies": {
-    "@babel/runtime": "^7.0.0-beta.46",
-    "bcrypt": "^2.0.1",
-    "bootstrap": "^4.1.1",
+    "@babel/runtime": "^7.0.0-beta.54",
+    "bcrypt": "^3.0.0",
+    "bootstrap": "^4.1.2",
     "jquery": "^3.3.1",
     "lodash": "^4.17.10",
     "meteor-node-stubs": "^0.4.1",
     "popper.js": "^1.14.3",
-    "prop-types": "^15.6.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-router-dom": "^4.2.2",
-    "recompose": "^0.27.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-router-dom": "^4.3.1",
+    "recompose": "^0.27.1",
     "simpl-schema": "^1.5.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.0.0-beta.54",
     "@meteorjs/eslint-config-meteor": "^1.0.5",
-    "autoprefixer": "^8.0.0",
-    "babel-eslint": "^8.2.3",
-    "chromedriver": "^2.38.3",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^16.1.0",
+    "autoprefixer": "^9.0.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.6",
+    "babel-jest": "^23.4.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "chromedriver": "^2.40.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^5.1.0",
+    "eslint-config-airbnb": "^17.0.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-import-resolver-meteor": "^0.4.0",
-    "eslint-plugin-import": "^2.11.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-meteor": "^5.0.0",
-    "eslint-plugin-prettier": "^2.6.0",
-    "eslint-plugin-react": "^7.7.0",
-    "jest": "^22.4.3",
-    "prettier": "1.12.1"
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-react": "^7.10.0",
+    "jest": "^23.4.1",
+    "prettier": "1.13.7",
+    "regenerator-runtime": "^0.12.0"
   },
   "postcss": {
     "plugins": {
