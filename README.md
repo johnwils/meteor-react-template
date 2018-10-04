@@ -1,6 +1,6 @@
 [![eslint: airbnb](https://img.shields.io/badge/eslint-airbnb-blue.svg)](https://github.com/airbnb/javascript)
 [![prettier](https://img.shields.io/badge/-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-## A Meteor 1.7.0.3, React 16, React Router 4, Bootstrap 4 template
+## A Meteor 1.7.0.5, React 16, React Router 4, Bootstrap 4 template
 
 Based off the official meteor scaffolding, with accounts, login and a demo collection that persists on login/logout.
 
