@@ -1,6 +1,6 @@
 [![eslint: airbnb](https://img.shields.io/badge/eslint-airbnb-blue.svg)](https://github.com/airbnb/javascript)
 [![prettier](https://img.shields.io/badge/-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-## A Meteor 1.7.0.5, React 16, React Router 4, Bootstrap 4 template
+## A Meteor 1.8, React 16, React Router 5, Bootstrap 4 template
 
 Based off the official meteor scaffolding, with accounts, login and a demo collection that persists on login/logout.
 
@@ -32,7 +32,7 @@ Navigate to [http://localhost:3000](http://localhost:3000) in any browser.
 
 
 ## Routing and redirects
-React Router 4 `props` are accessible in every top level 'page' component. This allows any page to access react router's 'redirect' functions and url params, etc. These can be passed onto any further components.
+React Router 5 `props` are accessible in every top level 'page' component. This allows any page to access react router's 'redirect' functions and url params, etc. These can be passed onto any further components.
 
 Also React Router's `withProps` HOC provides the same functionality to any component.
 
