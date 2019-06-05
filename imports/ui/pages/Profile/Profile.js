@@ -87,12 +87,10 @@ Profile.propTypes = {
   // usersReady: PropTypes.bool.isRequired,
   // users: Meteor.user() ? PropTypes.array.isRequired : () => null,
   countersReady: PropTypes.bool.isRequired,
-  counter: Meteor.user()
-    ? PropTypes.shape({
-        _id: PropTypes.string,
-        count: PropTypes.number,
-      }).isRequired
-    : () => null,
+  counter: PropTypes.shape({
+    _id: PropTypes.string,
+    count: PropTypes.number,
+  }),
 };
 
 export default withTracker(() => {

@@ -19,43 +19,41 @@ const PublicNav = () => [
 ];
 
 const SearchBar = () => (
-  <form className="form-inline">
+  <form className="form-inline my-2 my-lg-0">
     <input
       className="form-control mr-sm-2"
       type="search"
-      placeholder="Search.."
+      placeholder="Search"
       aria-label="Search"
     />
-    <button className="btn btn-secondary my-2 my-sm-0" type="button">
+    <button className="btn btn-outline-secondary my-2 my-sm-0" type="submit">
       <i className="fa fa-search" />
     </button>
   </form>
 );
 
-const LoggedInNav = () => [
-  <SearchBar key="searchbar" />,
-  <li key="dropdown" className="nav-item dropdown ml-4">
-    <span
-      className="nav-link dropdown-toggle"
-      id="navbarDropdownMenuLink"
-      data-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="false"
-    />
-    <div
-      className="dropdown-menu dropdown-menu-right"
-      aria-labelledby="navbarDropdownMenuLink"
-    >
+const LoggedInNav = () => (
+  <>
+    <SearchBar key="searchbar" />
+    <li className="nav-item">
       <NavLink to="/profile">
-        <button className="dropdown-item">Profile</button>
+        <button type="button" className="dropdown-item">
+          Profile
+        </button>
       </NavLink>
+    </li>
+    <li className="nav-item">
       <div className="dropdown-divider" />
+    </li>
+    <li>
       <NavLink to="/login" onClick={() => Meteor.logout()}>
-        <button className="dropdown-item">Logout</button>
+        <button type="button" className="dropdown-item">
+          Logout
+        </button>
       </NavLink>
-    </div>
-  </li>,
-];
+    </li>
+  </>
+);
 
 const Status = ({ loggedIn }) => (
   <div className="my-2 mr-3">
@@ -76,23 +74,23 @@ Status.propTypes = {
 };
 
 const Navbar = ({ loggedIn }) => (
-  <nav className="navbar navbar-expand-md justify-content-between py-0">
+  <nav className="navbar navbar-expand-lg navbar-light bg-light">
     <Status loggedIn={loggedIn} />
-    <span className="navbar-brand my-2">
+    <span className="navbar-brand" href="#">
       <NavLink to="/">Brand</NavLink>
     </span>
     <button
-      className="navbar-toggler my-2"
+      className="navbar-toggler"
       type="button"
       data-toggle="collapse"
-      data-target="#navbarContent"
-      aria-controls="navbarContent"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
       aria-expanded="false"
       aria-label="Toggle navigation"
     >
       <span className="navbar-toggler-icon" />
     </button>
-    <div className="collapse navbar-collapse" id="navbarContent">
+    <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav ml-auto">
         {loggedIn ? <LoggedInNav /> : <PublicNav />}
       </ul>
