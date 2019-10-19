@@ -11,5 +11,10 @@ Accounts.onCreateUser((options, user) => {
     _id: user._id,
     count: Number(0),
   });
-  return user;
+
+  // Add userType info in user document
+  console.log('inside onCreateUser');
+  const userWithTypeInfo = { ...user, userType: options.profile.userType };
+
+  return userWithTypeInfo;
 });

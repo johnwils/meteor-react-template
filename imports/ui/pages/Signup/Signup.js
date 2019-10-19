@@ -2,12 +2,14 @@ import { Accounts } from 'meteor/accounts-base';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
+import { Roles } from 'meteor/alanning:roles';
 
 // import components
 import Alert from '../../components/Alert';
 
 // import styles
 import './Signup.scss';
+import { resolveSoa } from 'dns';
 
 class Signup extends React.Component {
   constructor(props) {
@@ -15,6 +17,7 @@ class Signup extends React.Component {
     this.state = {
       email: '',
       password: '',
+      userType: '',
       errMsg: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -36,8 +39,8 @@ class Signup extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const { email, password } = this.state;
-    Accounts.createUser({ email, password }, err => {
+    const { email, password, userType } = this.state;
+    Accounts.createUser({ email, password, profile: { userType } }, err => {
       if (err) {
         this.setState({ errMsg: err.reason });
         return console.log(err);
@@ -93,6 +96,27 @@ class Signup extends React.Component {
                     required
                   />
                 </div>
+
+                <div className="form-group">
+                  <label htmlFor="userType">Register As</label>
+                  <select
+                    id="userType"
+                    // type="checkbox"
+                    className="form-control"
+                    name="userType"
+                    value={this.state.userType}
+                    onChange={e => this.setState({ userType: e.target.value })}
+                    required
+                  >
+                    <option value="" disabled selected>
+                      Select your option
+                    </option>
+                    <option value="representative">Representative</option>
+                    <option value="citizen">Citizen</option>
+                  </select>
+                  {errMsg && <Alert errMsg={errMsg} />}
+                </div>
+
                 <div className="form-group">
                   <label>
                     <input type="checkbox" name="aggree" value="1" required /> I
