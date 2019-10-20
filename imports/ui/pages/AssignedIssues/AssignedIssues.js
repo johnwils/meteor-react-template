@@ -24,11 +24,25 @@ class AssignedIssues extends React.Component {
   renderIssues = () => {
     const { assignedIssues } = this.props;
     const listOfIssues = assignedIssues.map(issue => (
-      <li key={issue._id} className="list-group-item">
-        {issue.text}
-      </li>
+      <div key={issue._id} className="container">
+        <li className="list-group-item">{issue.text}</li>
+
+        <button
+          type="button"
+          className="close"
+          aria-label="Close"
+          onClick={event => this.handleRemove(event, issue._id)}
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
     ));
     return listOfIssues;
+  };
+
+  handleRemove = (event, issueId) => {
+    event.preventDefault();
+    Meteor.call('issues.remove', issueId);
   };
 
   // getAssignedTasks() {
@@ -54,7 +68,7 @@ class AssignedIssues extends React.Component {
             placeholder="Enter issue"
           />
         </form>
-        <ul className="list-group">{this.renderIssues()}</ul>
+        <ul className="list-group list-group-flush">{this.renderIssues()}</ul>
       </div>
     );
   }

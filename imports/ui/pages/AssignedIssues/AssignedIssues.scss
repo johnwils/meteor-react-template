@@ -7,4 +7,16 @@
   h1 {
     color: #333;
   }
+  .container {
+    display: flex;
+    width: 100%;
+  }
+
+  .container > li {
+    width: 70%;
+  }
+
+  button.close > span {
+    color: red;
+  }
 }
