@@ -77,8 +77,9 @@ const Navbar = ({ loggedIn }) => (
   <nav className="navbar navbar-expand-lg navbar-light bg-light">
     <Status loggedIn={loggedIn} />
     <span className="navbar-brand" href="#">
-      <NavLink to="/">Brand</NavLink>
+      <NavLink to="/">PoliTracker</NavLink>
     </span>
+    {loggedIn && <NavLink to="/assigned_issues/">Assigned Issues</NavLink>}
     <button
       className="navbar-toggler"
       type="button"
