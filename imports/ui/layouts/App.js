@@ -25,7 +25,6 @@ import Spinner from '../components/Spinner';
 
 // import hoc to pass additional props to routes
 import PropsRoute from '../pages/PropsRoute';
-import Issues from '../../api/issues/issues';
 
 const App = props => (
   <Router>
@@ -63,22 +62,18 @@ App.propTypes = {
   loggingIn: PropTypes.bool.isRequired,
   userReady: PropTypes.bool.isRequired,
   loggedIn: PropTypes.bool.isRequired,
-  assignedIssues: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
 export default withTracker(() => {
-  Meteor.subscribe('assignedIssues');
   const userSub = Meteor.subscribe('user');
   const user = Meteor.user();
   const userReady = userSub.ready() && !!user;
   const loggingIn = Meteor.loggingIn();
   const loggedIn = !loggingIn && userReady;
-  const assignedIssues = Issues.find({}).fetch();
   // console.log(assignedIssues);
   return {
     loggingIn,
     userReady,
     loggedIn,
-    assignedIssues,
   };
 })(App);

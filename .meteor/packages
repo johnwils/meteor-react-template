@@ -40,3 +40,5 @@ didericis:callpromise-mixin
 lacosta:method-hooks
 tunifight:loggedin-mixin
 underscore@1.0.10
+aldeed:schema-deny
+aldeed:schema-index

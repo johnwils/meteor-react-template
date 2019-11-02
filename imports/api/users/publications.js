@@ -22,6 +22,7 @@ if (Meteor.isServer) {
             emails: 1,
             profile: 1,
             status: 1,
+            name: 1,
           },
         }
       );
@@ -29,24 +30,25 @@ if (Meteor.isServer) {
     return this.ready();
   });
 
-  // example friends publication
-  // Meteor.publish('users.friends', function() {
-  //   if (this.userId) {
-  //     const user = Meteor.users.findOne(this.userId);
-  //     if (user.friendIds) {
-  //       return Meteor.users.find(
-  //         { _id: { $inc: user.friendIds } },
-  //         {
-  //           fields: {
-  //             emails: 1,
-  //             profile: 1,
-  //             status: 1,
-  //           },
-  //         },
-  //       );
-  //     }
-  //     return this.ready();
-  //   }
-  //   return this.ready();
-  // });
+  // example same location users publication
+  Meteor.publish('users.sameZip', function() {
+    if (this.userId) {
+      const user = Meteor.users.findOne(this.userId);
+      // if (user.friendIds) {
+      return Meteor.users.find(
+        { zip: user.zip },
+        {
+          fields: {
+            emails: 1,
+            profile: 1,
+            status: 1,
+            name: 1,
+          },
+        }
+      );
+      // }
+      // return this.ready();
+    }
+    return this.ready();
+  });
 }
