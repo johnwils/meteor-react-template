@@ -124,11 +124,10 @@ class AssignedIssues extends React.Component {
                         type="text"
                         className="form-control"
                         id="issueTitle"
+                        name="issueTitle"
                         placeholder="Issue Title"
                         value={this.state.title}
-                        onChange={e =>
-                          this.setState({ title: e.target.value.trim() })
-                        }
+                        onChange={e => this.setState({ title: e.target.value })}
                       />
                     </div>
                     <div className="form-group">
@@ -155,7 +154,7 @@ class AssignedIssues extends React.Component {
                         placeholder="Issue Location"
                         value={this.state.location}
                         onChange={e =>
-                          this.setState({ location: e.target.value.trim() })
+                          this.setState({ location: e.target.value })
                         }
                       />
                     </div>
@@ -168,7 +167,7 @@ class AssignedIssues extends React.Component {
                         placeholder="Assign to"
                         value={this.state.assignedTo}
                         onChange={e =>
-                          this.setState({ assignedTo: e.target.value.trim() })
+                          this.setState({ assignedTo: e.target.value })
                         }
                       />
                     </div>
