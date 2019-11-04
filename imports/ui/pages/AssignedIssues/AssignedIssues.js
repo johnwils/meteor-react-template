@@ -11,6 +11,7 @@ import {
   issueUpdate,
 } from '../../../api/issues/methods';
 import Issues from '../../../api/issues/issues';
+import RecipeReviewCard from '../../components/Issue/Issue';
 // import Users from '../../../api/users/users';
 
 const initialState = {
@@ -108,6 +109,7 @@ class AssignedIssues extends React.Component {
   }
 
   render() {
+    const { issuesReady, assignedIssues, userReady, user } = this.props;
     return (
       <div className="container">
         <h1>AssignedIssues Page</h1>
@@ -227,6 +229,10 @@ class AssignedIssues extends React.Component {
                   {this.renderIssues()}
                 </ul>
               </div>
+              {/* <RecipeReviewCard
+                issue={issuesReady ? assignedIssues[0] : ''}
+                user={userReady ? user : ''}
+              /> */}
             </section>
           </div>
         </div>
@@ -240,6 +246,8 @@ AssignedIssues.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  user: PropTypes.object.isRequired,
+  userReady: PropTypes.bool.isRequired,
   issuesReady: PropTypes.bool.isRequired,
   assignedIssues: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
@@ -253,15 +261,20 @@ export default withTracker(() => {
   */
 
   // counters example
-  const issuesSub = Meteor.subscribe('issues.user');
+  const issuesSub = Meteor.subscribe('issues');
   const assignedIssues = Issues.find({ owner: Meteor.userId() }).fetch();
   const issuesReady = issuesSub.ready() && !!assignedIssues;
+  const userSub = Meteor.subscribe('user');
   Meteor.subscribe('user.sameZip');
+  const user = Meteor.user();
+  const userReady = userSub.ready() && !!user;
 
   return {
     // remote example (if using ddp)
     // usersReady,
     // users,
+    userReady,
+    user,
     issuesReady,
     assignedIssues,
   };

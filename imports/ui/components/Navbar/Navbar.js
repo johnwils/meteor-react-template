@@ -80,6 +80,7 @@ const Navbar = ({ loggedIn }) => (
       <NavLink to="/">PoliTracker</NavLink>
     </span>
     {loggedIn && <NavLink to="/assigned_issues/">Assigned Issues</NavLink>}
+    {loggedIn && <NavLink to="/newsfeed/">News Feed</NavLink>}
     <button
       className="navbar-toggler"
       type="button"

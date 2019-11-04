@@ -12,10 +12,17 @@ if (Meteor.isServer) {
     return this.ready();
   });
 
-  Meteor.publish('issues.user', function() {
+  Meteor.publish('issues', function() {
     if (!this.userId) {
       return this.ready();
     }
-    return Issues.find({ owner: this.userId });
+    return Issues.find();
+  });
+
+  Meteor.publish('issues.samezip', function() {
+    if (!this.userId) {
+      return this.ready();
+    }
+    return Issues.find({ location: Meteor.users.findOne(this.userId).zip });
   });
 }

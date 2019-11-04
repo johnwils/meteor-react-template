@@ -19,6 +19,7 @@ import NotFound from '../pages/Not-Found';
 import RecoverPassword from '../pages/RecoverPassword';
 import ResetPassword from '../pages/ResetPassword';
 import AssignedIssues from '../pages/AssignedIssues';
+import NewsFeed from '../pages/NewsFeed';
 
 // import Spinner
 import Spinner from '../components/Spinner';
@@ -42,6 +43,7 @@ const App = props => (
           component={AssignedIssues}
           {...props}
         />
+        <PropsRoute path="/newsfeed" component={NewsFeed} {...props} />
         <PropsRoute
           path="/recover-password"
           component={RecoverPassword}

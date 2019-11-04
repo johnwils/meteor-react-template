@@ -8,24 +8,32 @@ import Issues from './issues.js';
 import { issueCreate, issueUpdate, issueDelete } from './methods.js';
 
 if (Meteor.isServer) {
-  describe('counters method', function() {
+  describe('issues method', function() {
     before(function() {
-      Counters.remove({});
+      Issues.remove({});
       Meteor.users.remove({});
     });
 
+    const issueInstance = {
+      title: 'Test Title',
+      description: 'Test Description',
+      category: 'water',
+      severtiy: 5,
+      location: 92612,
+      owner: 'clyton',
+    };
     // use same counter id for all tests
     let counterId = null;
 
     it('can add a counter', async function(done) {
-      assert.equal(Counters.find().count(), 0);
-      countersInsert.call((err, result) => {
+      assert.equal(Issues.find().count(), 0);
+      issueCreate.call((err, result) => {
         if (err) {
           console.log(err);
           return done();
         }
         counterId = result;
-        assert.equal(Counters.find().count(), 1);
+        assert.equal(Issues.find().count(), 1);
         return done();
       });
     });

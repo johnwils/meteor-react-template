@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 /**
  * Meteor methods
  */
@@ -96,6 +97,7 @@ export const issueCreate = new ValidatedMethod({
         throw new Meteor.Error('not-authorized');
       }
       console.log('running insert method');
+      const ownerName = Meteor.user().name;
       return Issues.insert({
         category,
         title,
@@ -103,6 +105,7 @@ export const issueCreate = new ValidatedMethod({
         severity,
         location,
         assignedTo,
+        ownerName,
       });
     }
 
@@ -124,15 +127,13 @@ export const issueUpdate = new ValidatedMethod({
     },
   },
   validate: new SimpleSchema({
-    title: { type: String },
+    issueId: { type: String },
+    severity: { type: Number },
   }).validator(),
-  run(issueInstance) {
+  run({ issueId, severity }) {
+    // throw new Meteor.Error(severity);
     if (Meteor.isServer) {
-      // secure code - not available on the client
-      if (!this.userId) {
-        throw new Meteor.Error('not-authorized');
-      }
-      return Issues.update(issueInstance);
+      return Issues.update({ _id: issueId }, { $set: { severity } });
     }
     // call code on client and server (optimistic UI)
   },

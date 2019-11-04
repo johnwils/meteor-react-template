@@ -2,6 +2,7 @@
 
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
+import Users from '../users/users';
 
 // define collection
 const Issues = new Meteor.Collection('issues');
@@ -34,6 +35,8 @@ const schema = new SimpleSchema({
   severity: {
     type: Number,
     optional: false,
+    min: 1,
+    max: 10,
     // decimal: true,
   },
   // zip code
@@ -58,11 +61,25 @@ const schema = new SimpleSchema({
     type: Date,
     optional: false,
     autoValue() {
-      return new Date();
+      if (this.isInsert && !this.isSet) {
+        return new Date();
+      }
     },
     denyUpdate: true,
   },
   assignedTo: {
+    type: String,
+    optional: false,
+  },
+  state: {
+    type: String,
+    optional: false,
+    allowedValues: ['backlog', 'todo', 'in-progress', 'done'],
+    autoValue() {
+      if (this.isInsert && !this.isSet) return 'backlog';
+    },
+  },
+  ownerName: {
     type: String,
     optional: false,
   },
