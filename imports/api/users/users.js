@@ -11,3 +11,8 @@ Meteor.users.deny({
     return true;
   },
 });
+
+Meteor.startup(() => {
+  const roles = ['admin', 'user'];
+  roles.forEach(role => Roles.createRole(role, { unlessExists: true }));
+});

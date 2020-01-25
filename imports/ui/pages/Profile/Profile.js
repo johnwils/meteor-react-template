@@ -20,7 +20,7 @@ import Text from '../../components/Text';
 import './Profile.scss';
 
 class Profile extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     if (!this.props.loggedIn) {
       return this.props.history.push('/login');
     }

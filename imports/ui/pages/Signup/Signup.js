@@ -20,7 +20,7 @@ class Signup extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.loggedIn) {
       return this.props.history.push('/profile');
     }

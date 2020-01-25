@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './Landing.scss';
 
 class Landing extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     if (this.props.loggedIn) {
       return this.props.history.push('/profile');
     }
