@@ -66,7 +66,7 @@ The following mixins are used with methods:
 
 - [lacosta:method-hooks](https://atmospherejs.com/lacosta/method-hooks) provides before and after hooks when methods are called.
 
-- [tunifight:loggedin-mixin](https://atmospherejs.com/tunifight/loggedin-mixin) is used to only allow logged-in users to call methods and uses `alanning:roles` to check the user has the correct role privileges to call the method.
+- [tunifight:loggedin-mixin](https://atmospherejs.com/tunifight/loggedin-mixin) is used to only allow logged-in users to call methods.
 
 ## Roles
 Basic roles are defined using `alanning:roles`.

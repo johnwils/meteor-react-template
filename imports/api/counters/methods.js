@@ -48,13 +48,6 @@ export const countersIncrease = new ValidatedMethod({
   beforeHooks: [beforeHookExample],
   afterHooks: [afterHookExample],
   checkLoggedInError,
-  checkRoles: {
-    roles: ['admin', 'user'],
-    rolesError: {
-      error: 'not-allowed',
-      message: 'You are not allowed to call this method',
-    },
-  },
   validate: new SimpleSchema({
     _id: {
       type: String,
