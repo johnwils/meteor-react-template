@@ -55,7 +55,7 @@ class Login extends React.Component {
         <div className="card mx-auto" style={{ maxWidth: '28rem' }}>
           <div className="card-header">
             <div className="brand">
-              <div className="text-center">
+              <div className="text-center pt-3">
                 <img
                   className="rounded-circle"
                   src="https://via.placeholder.com/150x150"
