@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { render } from 'react-dom';
 
-import 'popper.js';
+import '@popperjs/core';
 import 'bootstrap';
 import './styles/main.scss';
 
